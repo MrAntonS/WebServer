@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+            {% if new %}
+                    <h1>{{new[1]}}<h1> 
+                    <p class="text-break">
+                    {{new[2]}}
+                    </p>
+                    <h2>
+                    ---{{new[3]}}
+                    </h2>
+                            </tr>
+                        <br>
+            {% else %}
+                <h2><span class="badge badge-pill badge-info">Нет писем, которые вы можете удалить!</span></h2>
+            {% endif %}
+{% endblock %}

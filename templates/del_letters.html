@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+ 
+{% block content %}
+	<div class="alert alert-danger" role="alert">
+		Удалить (просто нажмите на ненужное письмо)
+	</div>
+	<table class="table">
+  <thead>
+    <tr>
+    <th scope="col">#</th>
+      <th scope="col">Имя</th>
+      <th scope="col">Сообщение</th>
+ </tr>
+  </thead>
+  <tbody>
+	{% if news %}
+	    {% for new in news %}
+	       <tr>
+	          <th scope="row"> </th>
+	    	<td> {{new[0]}}</td> <td>({{new[1]}})</td> <td><a class="badge badge-pill badge-danger" href="/del_letters/{{new[0]}}">Удалить</a></td>
+		 </tr>
+	    	<br>
+		
+	    {% endfor %}
+	{% else %}
+		<h2><span class="badge badge-pill badge-info">Нет писем, которые вы можете удалить!</span></h2>
+	{% endif %}
+{% endblock %}
