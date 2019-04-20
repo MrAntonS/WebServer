@@ -7,7 +7,7 @@ def get_map(x, y, zoom, filename, size=450, map_type="map"):
               "z": str(zoom),
               "ll": ",".join([str(x),str(y)]),
               "size": ",".join([str(500), str(400)]),
-              "pt": ",".join([str(test.test()[0][3]), str(test.test()[1][4])])}
+              "pt": test.test()[1][:-1]}
     response = requests.get(geocoder_api_server, params=params)
     if not response:
         err = "Http статус:"+str(response.status_code)+"("+str(response.reason)+")"
