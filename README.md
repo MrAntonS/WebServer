@@ -14,7 +14,7 @@
 </ul>
 <li>sosa.py</li>
 </ul></p>
-<p>"Flight Radar" были написаны на языке Python с помощью фреймворка Pygame, библиотек opensky и requests.</p>
+<p>"Flight Radar" был написан на языке Python с помощью библиотеки Pygame, библиотек opensky и requests.</p>
 <p>В дальнейшем я собираюсь:<br>
 :black_square_button: Перенести все на Web<br>
 :black_square_button: Перестать обрезать число самолетов<br>
