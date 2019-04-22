@@ -13,9 +13,9 @@
 <ul>
 <li>def get_map() (Передача готовой карты)</li>
 </ul>
-<li>sosa.py</li>
+<li>main.py</li>
 </ul></p>
-<p>"Flight Radar" был написан на языке Python с помощью библиотеки Pygame, библиотек opensky и requests.</p>
+<p>"Flight Radar" был написан на языке Python с помощью библиотеки Pygame, библиотек opensky и requests. Также использовалось Rest-Api Yandex карт</p>
 <p>В дальнейшем я собираюсь:<br>
 :black_square_button: Перенести все на Web<br>
 :black_square_button: Перестать обрезать число самолетов<br>
