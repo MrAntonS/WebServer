@@ -6,7 +6,8 @@
 <ul>
 <li>test.py:</li>
 <ul>
-<li>class OpenSkyApi (работа с самой базой данных)</li>
+<li>class OpenSkyApi (Api для работы с самой базой данных. Все требования соблюдены. Copyright The OpenSky Network)</li>
+ 
 </ul>
 <li>map.py:</li>
 <ul>
