@@ -18,6 +18,6 @@
 <p>"Flight Radar" был написан на языке Python с помощью библиотеки Pygame, библиотек opensky и requests. Также использовалось Rest-Api Yandex карт</p>
 <p>В дальнейшем я собираюсь:<br>
 :white_check_mark: Перенести все на Web<br>
-:white_check_mark: Перестать обрезать число самолетов<br>
+:black_square_buttonk: Перестать обрезать число самолетов<br>
 :black_square_button: Добавить Базу данных для доступа к состоянию самолета в любой момент времени<br>
 :white_check_mark: Переделать метки</p>
