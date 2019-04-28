@@ -1,5 +1,5 @@
 # _“Flight radar”_
-![Labyrinth.jpg](https://github.com/MrAntonS/WebServer/blob/master/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA.PNG)
+![Labyrinth.jpg](https://github.com/MrAntonS/WebServer/blob/OpenSky-Web/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA.png)
 ##### *Проект ученика Яндекс.Лицея* <br> *Саенко Антона*
 <p>Проект представляет собой уменьшенную копию программы flight radar.<br></p>
 <p>Основными элементами являются: <br>
