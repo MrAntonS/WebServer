@@ -9,11 +9,11 @@
 <li>class OpenSkyApi (Api для работы с самой базой данных. Все требования соблюдены. Copyright The OpenSky Network)</li>
 <li>def test()</li>
 </ul>
-<li>map.py:</li>
+<li>data.json:</li>
 <ul>
-<li>def get_map() (Передача готовой карты)</li>
+<li>(Передача готовой карты)</li>
 </ul>
-<li>main.py</li>
+<li>probe4.js</li>
 </ul></p>
 <p>"Flight Radar" был написан на языке Python с помощью библиотеки Pygame, библиотек opensky и requests. Также использовалось Rest-Api Yandex карт</p>
 <p>В дальнейшем я собираюсь:<br>
