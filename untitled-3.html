@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>GENERATOR Setup</title>
+    <script>
+        var setFormValues = function(form, cfg) {
+            var name, field;
+            for (name in cfg){
+                if (form[name]) {
+                    field = form[name];
+                    if (field[1] && field[1].type === 'checkbox') {
+                        field = field[1];
+                    }
+                    if (field.type === 'checkbox'){
+                        field.checked = cfg[name] === '1' ? true : false;
+                    } else {
+                        field.value = cfg[name];
+                    }
+                }
+            }
+        };
+        var $ = function(id) {
+            return document.getElementById(id);
+        };
+        var reloadTimer={
+            s:10,
+            reload:function(start) {
+                if(start) {
+                    this.s = start;
+                }
+                $('timer').innerHTML = this.s < 10 ? '0' + this.s : this.s;
+                if (this.s == 0){
+                    document.location.href = document.referrer != '' ? document.referrer : '/';
+                }
+                this.s--;
+                setTimeout('reloadTimer.reload()', 1000);
+            }
+        };
+    </script>
+</head><body>
+  ~inc:menu.inc~
+    <div class="content">
+        <h2 class="title">Настройки генератора</h2>
+        <form method="post" action="">
+            <table class="form">
+                <tr>
+                    <td class="label">Задержка запуска генератора:</td>
+                    <td><input title='0...200' name='gen_del_str' maxlength='3' value='~gen_del_str~'>сек.</td>
+                </tr>
+                <tr>
+                    <td class="label">Количество попыток запуска генератора:</td>
+                    <td><input title='0...200' name='gen_pro_str' maxlength='3' value='~gen_pro_str~'></td>
+                </tr>
+                <tr>
+                    <td class="label">Пауза между попытками запуска генератора:</td>
+                    <td><input title='0...200' name='gen_pr_dstr' maxlength='3' value='~gen_pr_dstr~'>сек.</td>
+                </tr>
+                <tr>
+                    <td class="label">Время прогрева лето:</td>
+                    <td><input title='0...200' name='gen_hot_1__' maxlength='3' value='~gen_hot_1__~'>мин.</td>
+                </tr>
+                <tr>
+                    <td class="label">Время прогрева зима:</td>
+                    <td><input title='0...200' name='gen_hot_2__' maxlength='3' value='~gen_hot_2__~'>мин.</td>
+                </tr>
+                <tr>
+                    <td class="label">Время ожидания перехода на сеть:</td>
+                    <td><input title='0...200' name='gen_tim_pwr' maxlength='3' value='~gen_tim_pwr~'>сек.</td>
+                </tr>
+            </table>
+        <p class="center">
+            <input type='hidden' name='uart_save' value='2'>
+            <input type='hidden' name='cfg_save' value='1'>
+            <input type='submit' value='Применить конфигурацию' class="button">
+        </p>
+        </form>
+    </div>
+<script>
+var cfg = [
+    {
+        gen_del_str:"1",
+        gen_pro_str:"2",
+        gen_pr_dstr:"3",
+        gen_hot_1__:"4",
+        gen_hot_2__:"5",
+        gen_tim_pwr:"6"
+    },
+    {
+        gen_del_str:"3",
+        gen_pro_str:"1",
+        gen_pr_dstr:"5",
+        gen_hot_1__:"y",
+        gen_hot_2__:"x",
+        gen_tim_pwr:"t"
+    },
+    {
+        gen_del_str:"sdf",
+        gen_pro_str:"aaa",
+        gen_pr_dstr:"zzz",
+        gen_hot_1__:"dd",
+        gen_hot_2__:"sss",
+        gen_tim_pwr:"gg"
+    }
+];
+var numCfg = 0;
+setInterval(function () {
+    setFormValues(document.forms[0], cfg[numCfg]);
+    numCfg++;
+    if(numCfg >= 3) numCfg = 0;
+}, 3000);
+</script>
+</body></html>
