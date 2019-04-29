@@ -5,7 +5,7 @@ import os
 import test
 from map import get_map
  
- 
+print("The OpenSky Network, http://www.opensky-network.org or by citing the paper Bringing up OpenSky: A large-scale ADS-B sensor network for research Matthias Schäfer, Martin Strohmeier, Vincent Lenders, Ivan Martinovic, Matthias WilhelmACM/IEEE International Conference on Information Processing in Sensor Networks, April 2014") 
 response = None
 MYEVENTTYPE = 30
 #Частота обновлениея ~20 секунд
