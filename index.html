@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ФлайтРадар Антона Саенко</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Refresh" content="120" />
+    <!--
+        Укажите свой API-ключ. Тестовый ключ НЕ БУДЕТ работать на других сайтах.
+        Получить ключ можно в Кабинете разработчика: https://developer.tech.yandex.ru/keys/
+    -->
+    <script type="text/javascript" src="../json/json/data4.json"></script>
+	<script src="https://api-maps.yandex.ru/2.1/?lang=ru-RU&amp;apikey=d8841280-fd00-4670-915e-9e8d9a851530" type="text/javascript"></script>
+	<style>
+        html, body{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .placemark_layout_container { 
+            position: relative;
+            font-family: Georgia;
+            font-size: 40px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        /* Квадратный макет метки */
+        .square_layout {
+            position: absolute;
+            left: -23px;
+            top: -23px;
+            width: 46px;
+            height: 46px;
+            line-height: 46px;
+            border: 2px solid #218703;
+            background-color: #F8FDF7;
+            color: #218703;
+        }
+        
+        /* Круглый макет метки */
+        .circle_layout {
+            background-color: white;
+            position: absolute;
+            left: -23px;
+            top: -23px;
+            width: 46px;
+            height: 46px;
+            border: 2px solid #225D9C;
+            color: #225D9C;
+            line-height: 46px;
+            /* Это CSS свойство не будет работать в Internet Explorer 8 */
+            border-radius: 50px;
+        }
+        
+        /* Макет метки с "хвостиком" */
+        .polygon_layout {
+            position: relative;
+            background: #ffffff;
+            border: 4px solid #943A43;
+            width: 50px; 
+            height: 50px;
+            position: absolute;
+            left: -28px;
+            top: -76px;
+            color: #943A43;
+        }
+        
+        .polygon_layout:after, .polygon_layout:before {
+            top: 100%;
+            left: 50%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+        }
+        
+        .polygon_layout:after {
+            border-top-color: #943A43;
+            border-width: 10px;
+            margin-left: -10px;
+        }
+        
+        .polygon_layout:before {
+            border-top-color: #943A43;
+            border-width: 16px;
+            margin-left: -16px;
+        }
+            /*  <span class="metadata-marker" style="display: none;" data-region_tag="css"></span>       Set the size of the div element that contains the map */
+        #map {
+                height: 85%;
+                /* The height is 400 pixels */
+                width: 100%;
+                /* The width is the width of the web page */
+            }
+    </style>
+     <script>
+//
+// json read start 
+var json = JSON.parse(data);
+/*      console.log(data);
+      for (var i=0; i < json.length; i++)
+      {
+
+      alert(json[i].latitude);
+      }
+
+*/
+
+// end json read
+//Yandex maps
+ymaps.ready(function() {
+  	var myMap = new ymaps.Map("map", {
+    center: [64.90487763104672, 103.36864451367187],
+    zoom: 3,
+    controls:['typeSelector', 'zoomControl'],
+    type: 'yandex#satellite'
+});
+
+  var placemarks = [];
+  for (idx in objects) {
+    var object = objects[idx];
+    placemarks[idx] = new ymaps.Placemark(object.coord, {
+      iconContent: object.count,
+      balloonContent: object.Hint
+    }, {
+      iconLayout: 'default#image',
+      iconImageHref: object.icon,
+      iconImageSize: [17, 17],
+      iconImageOffset: [0, 0]
+    });
+    myMap.geoObjects.add(placemarks[idx]);
+  }
+
+  myMap.setBounds(myMap.geoObjects.getBounds(), {
+    zoomMargin: 20,
+  });
+});
+
+var objects = [];
+var icon = "../images/planeicon_1.png";
+var selector = 0;
+
+for (var i=0; i < json.length; i++){
+//console.log(json[i].Heading);
+if (Number(json[i].Heading)/45 >= 0) selector = Math.floor(Number(json[i].Heading)/45) ;
+else selector = Math.ceil(Number(json[i].Heading)/45) ;
+//console.log(selector);
+switch (selector) {
+case 0: 
+		icon = "../images/planeicon_0.png";
+		break;
+case 1:
+		icon = "../images/planeicon_1.png";
+		break;
+case 2:
+		icon = "../images/planeicon_2.png";
+		break;
+case 3:
+		icon = "../images/planeicon_3.png";
+		break;
+case 4: 
+		icon = "../images/planeicon_4.png";
+		break;
+case 5:
+		icon = "../images/planeicon_5.png";
+		break;
+case 6: 
+		icon = "../images/planeicon_6.png";
+		break;
+case 7:
+		icon = "../images/planeicon_7.png";
+		break;
+default: icon = "../images/planeicon.png";
+}
+objects[i] = {
+  				"id": i+1,
+  				"coord": [Number(json[i].latitude), Number(json[i].longitude)],
+  				"count": "28 247",
+				"Hint": String("id: "+String(i)+"<br>"+" Callsign: " + String(json[i].Callsign)  + "<br>"+" Icao24: " + String(json[i].icao24) + "<br>"+" Country: " + String(json[i].Country) + "<br>"+" Speed: " + String(json[i].Velocity*3600/1000) + " kmh"),
+				"icon": String(icon)
+				} 
+				}
+				
+</script>
+</head>
+<!-- div id="map"></div> -->
+
+<body>
+        <h3>Demo ads-b FlightRadar written by Anton Saenko © 2019</h3>
+        <!--The div element for the map -->
+        <div id="map"></div>
+
+</body>
+</html>       
+    
